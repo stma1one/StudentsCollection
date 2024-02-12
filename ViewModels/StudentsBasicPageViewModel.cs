@@ -12,6 +12,7 @@ namespace StudentsCollection.ViewModels
 {
     public class StudentsBasicPageViewModel : ViewModelBase
     {
+        
         private string studentName;
         public string StudentName { get => studentName; set { studentName = value; ((Command)AddStudentCommand).ChangeCanExecute(); } }
         public ObservableCollection<Student> Students { get; set; }

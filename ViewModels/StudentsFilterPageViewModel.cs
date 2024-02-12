@@ -45,6 +45,7 @@ namespace StudentsCollection.ViewModels
             foreach(var student in list)
                 Students.Add(student);
             ((Command)ClearStudentsCommand).ChangeCanExecute();
+           
         }
 
     }

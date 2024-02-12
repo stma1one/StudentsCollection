@@ -7,32 +7,35 @@
     xmlns:vm="clr-namespace:StudentsCollection.ViewModels"
     Title="StudentsBasicPage"
     x:DataType="vm:StudentsBasicPageViewModel">
+
     <ScrollView Margin="10">
 
         <Frame BorderColor="Transparent">
-            
+            <!--  Grid for buttons, Add Student, Collection of students  -->
             <Grid
                 HorizontalOptions="Center"
                 RowDefinitions=".1*,.1*,*"
                 RowSpacing="2">
-                <!--Load and Delete all Students-->
+                <!--  Load and Delete all Students  -->
                 <HorizontalStackLayout
                     Margin="0,5,0,0"
                     HorizontalOptions="Center"
                     Spacing="10">
-                    <!--Load Students-->
+                    <!--  Load Students  -->
                     <Button
                         BackgroundColor="Green"
                         Command="{Binding LoadStudentsCommand}"
                         CornerRadius="40"
                         Text="טען תלמידים"
                         WidthRequest="110" />
+                    <!--  Delete All Students  -->
                     <Button
                         Command="{Binding ClearStudentsCommand}"
                         CornerRadius="40"
                         Text="מחק תלמידים"
                         WidthRequest="110" />
                 </HorizontalStackLayout>
+                <!--  Add Student  -->
                 <HorizontalStackLayout Grid.Row="1">
                     <Label Text="הוסף שם תלמיד" VerticalOptions="Center" />
                     <Entry
@@ -49,10 +52,13 @@
                         HeightRequest="50"
                         Text="הכנס תלמיד" />
                 </HorizontalStackLayout>
+                <!--  list of students  -->
                 <CollectionView Grid.Row="2" ItemsSource="{Binding Students}">
+                    <!--  presentation  -->
                     <CollectionView.ItemsLayout>
                         <LinearItemsLayout ItemSpacing="4" Orientation="Vertical" />
                     </CollectionView.ItemsLayout>
+                    <!--  empty view  -->
                     <CollectionView.EmptyView>
                         <StackLayout
                             Margin="10"
@@ -67,6 +73,7 @@
 
                         </StackLayout>
                     </CollectionView.EmptyView>
+                    <!--  define how an item looks like  -->
                     <CollectionView.ItemTemplate>
                         <DataTemplate x:DataType="models:Student">
                             <Frame>
