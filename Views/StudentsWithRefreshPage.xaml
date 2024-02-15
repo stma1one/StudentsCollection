@@ -53,7 +53,7 @@
             <!--  refreshView מוסיפה אפשרות לבצע ריענון עם סימון בזמן ביצוע הפעולה. IsRefreshing - מעדכן האם מציג/מסתיר את הסמן של הרענון  -->
             <RefreshView Command="{Binding LoadStudentsCommand}" IsRefreshing="{Binding IsRefreshing}">
                 <!--  collectionView - פקד אוספים. itemsource- מקור הנתונים  -->
-                <CollectionView x:Name="colview" ItemsSource="{Binding Students}">
+                <CollectionView x:Name="colview" sele ItemsSource="{Binding Students}">
                     <!--  עיצוב הפריסה של הפריטים  -->
                     <CollectionView.ItemsLayout>
                         <LinearItemsLayout ItemSpacing="4" Orientation="Vertical" />
@@ -118,9 +118,8 @@
                                             <Label.FormattedText>
                                                 <FormattedString>
                                                     <Span FontAttributes="Bold" Text="BirthDay:" />
-
+                                                    <!--  }0=>הפרמטר dd=>ימים בהצגה של 2 ספרות  MM=> חודשים ב2 ספרות  yyyy => שנים  -->
                                                     <Span Text="{Binding BirthDate, StringFormat='{0:dd/MM/yyyy}'}" />
-
                                                 </FormattedString>
                                             </Label.FormattedText>
                                         </Label>
@@ -140,8 +139,9 @@
                 </CollectionView>
             </RefreshView>
             <Picker
-                Title="בחר חודש"
+                Title="בחר חודש" 
                 ItemsSource="{Binding Months}"
+                
                 SelectedIndex="{Binding SelectedIndex}"
                 SelectedItem="{Binding SelectedMonth}" />
             <HorizontalStackLayout HorizontalOptions="Center" Spacing="5">

@@ -16,14 +16,14 @@ namespace StudentsCollection.ViewModels
         #region סינון חודשים
         public ObservableCollection<int> Months { get; set; }   //רשימת החודשים לסינון
         public object SelectedMonth { get; set; }//חודש נבחר
-        public int selectedIndex { get; set; }//מיקום של החודש הנבחר ברשימה
+        private int selectedIndex;//מיקום של החודש הנבחר ברשימה
         public int SelectedIndex { get => selectedIndex; set { selectedIndex = value; OnPropertyChanged(); } }
         public ICommand FilterCommand { get; private set; }//סינון
         public ICommand ClearFilterCommand { get; private set; }    //ניקוי סינון
         #endregion
 
         #region טיפול בסטודנטים
-       private  List<Student> fullList { get; set; }//רשימת הסטודנטים המלאה
+        private List<Student> fullList;//רשימת הסטודנטים המלאה
         private string studentName;
         public string StudentName { get => studentName; set { studentName = value; ((Command)AddStudentCommand).ChangeCanExecute(); } }//שם סטודנט להוספה
         public ObservableCollection<Student> Students { get; set; }//אוסף סטודנטים
@@ -41,7 +41,7 @@ namespace StudentsCollection.ViewModels
         #endregion
         public StudentsWithRefreshPageViewModel()
         {
-            
+            fullList=new List<Student>();
             Students = new ObservableCollection<Student>();//רשימה ריקה
             Months = new ObservableCollection<int>();//רשימת החודשים שתוצג במסך
             
@@ -60,12 +60,16 @@ namespace StudentsCollection.ViewModels
             //פעולת הסינון
             FilterCommand = new Command(() =>
             {
-                var bornOnSelectedMonth = fullList.Where(x => x.BirthDate.Month == (int)SelectedMonth).ToList(); //נמצא את כל מי שנולד בחודש שנבחר
+                try
+                {
+                    var bornOnSelectedMonth = fullList.Where(x => x.BirthDate.Month == (int)SelectedMonth).ToList(); //נמצא את כל מי שנולד בחודש שנבחר
 
-                Students.Clear(); //נרוקן את הרשימה הקיימת
+                    Students.Clear(); //נרוקן את הרשימה הקיימת
 
-                foreach (var student in bornOnSelectedMonth)
-                    Students.Add(student);//נאכלס את הרשימה מאלו שנולדו באותו חודש
+                    foreach (var student in bornOnSelectedMonth)
+                        Students.Add(student);//נאכלס את הרשימה מאלו שנולדו באותו חודש
+                }
+                catch (Exception ex) { Console.WriteLine(ex.Message   ); }
               
             }, () => fullList!=null&&fullList.Count > 0
             ) ;
