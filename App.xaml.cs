@@ -8,7 +8,7 @@ namespace StudentsCollection
         {
             InitializeComponent();
 
-            MainPage = new StudentsBasicPage();
+            MainPage = new StudentsWithRefreshPage();
         }
     }
 }

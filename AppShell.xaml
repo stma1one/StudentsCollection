@@ -4,11 +4,25 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:StudentsCollection"
-    Shell.FlyoutBehavior="Disabled">
+    xmlns:views="clr-namespace:StudentsCollection.Views"
+    Shell.FlyoutBehavior="Flyout">
 
-    <!--<ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />-->
+    <TabBar Title="Tabbbbs">
+        <Tab Title="Filter">
+            <ShellContent
+                Title="FilterPage"
+                ContentTemplate="{DataTemplate views:StudentsFilterPage}"
+                Route="Filter" />
+        </Tab>
+        <Tab Title="ContextMenu">
+            <ShellContent ContentTemplate="{DataTemplate views:StudentsWithRefreshPage}" Route="Refresh" />
+        </Tab>
+    </TabBar>
+    <FlyoutItem Title="Home">
+        <ShellContent
+            Title="Home"
+            ContentTemplate="{DataTemplate views:StudentsBasicPage}"
+            Route="MainPage" />
+    </FlyoutItem>
 
 </Shell>

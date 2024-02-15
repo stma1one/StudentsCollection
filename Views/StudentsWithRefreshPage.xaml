@@ -7,15 +7,17 @@
     xmlns:vm="clr-namespace:StudentsCollection.ViewModels"
     Title="StudentsWithRefreshPage"
     x:DataType="vm:StudentsWithRefreshPageViewModel">
-    <ScrollView Margin="10">
 
-        <Frame BorderColor="Transparent">
+    <!--  scroll view enables Scroll when the obejcts on screen has more entries than the screen  -->
+    <ScrollView Margin="10">
+        <StackLayout>
+            <!--  Load And Delete buttons Grid  -->
             <Grid
                 HorizontalOptions="Center"
-                RowDefinitions=".1*,.1*,*"
+                RowDefinitions="*,*"
                 RowSpacing="2">
                 <HorizontalStackLayout
-                    Margin="0,5,0,0"
+                    Margin="15"
                     HorizontalOptions="Center"
                     Spacing="10">
                     <Button
@@ -30,6 +32,7 @@
                         Text="מחק תלמידים"
                         WidthRequest="110" />
                 </HorizontalStackLayout>
+                <!--  הכנסת שם תלמיד לאוסף  -->
                 <HorizontalStackLayout Grid.Row="1">
                     <Label Text="הוסף שם תלמיד" VerticalOptions="Center" />
                     <Entry
@@ -39,17 +42,23 @@
                         VerticalOptions="Center"
                         VerticalTextAlignment="Center"
                         WidthRequest="100" />
-
                     <Button
                         Command="{Binding AddStudentCommand}"
                         FontAttributes="Bold"
                         HeightRequest="50"
                         Text="הכנס תלמיד" />
                 </HorizontalStackLayout>
-                <CollectionView Grid.Row="2" ItemsSource="{Binding Students}">
+            </Grid>
+
+            <!--  refreshView מוסיפה אפשרות לבצע ריענון עם סימון בזמן ביצוע הפעולה. IsRefreshing - מעדכן האם מציג/מסתיר את הסמן של הרענון  -->
+            <RefreshView Command="{Binding LoadStudentsCommand}" IsRefreshing="{Binding IsRefreshing}">
+                <!--  collectionView - פקד אוספים. itemsource- מקור הנתונים  -->
+                <CollectionView x:Name="colview" ItemsSource="{Binding Students}">
+                    <!--  עיצוב הפריסה של הפריטים  -->
                     <CollectionView.ItemsLayout>
                         <LinearItemsLayout ItemSpacing="4" Orientation="Vertical" />
                     </CollectionView.ItemsLayout>
+                    <!--  תצוגה כשאין פריטים  -->
                     <CollectionView.EmptyView>
                         <StackLayout
                             Margin="10"
@@ -64,9 +73,23 @@
 
                         </StackLayout>
                     </CollectionView.EmptyView>
+                    <!--  עיצוב תצוגה של פריט בודד  -->
                     <CollectionView.ItemTemplate>
+                        <!--  x:DataType מגדיר מאיפה להשלים את הנתונים  -->
                         <DataTemplate x:DataType="models:Student">
-                            <Frame>
+                            <!--  תפריט בחירה  -->
+                            <SwipeView>
+                                <!--  מאיזה כיוון הגרירה : Left, Right, Top, Buttom  -->
+                                <SwipeView.LeftItems>
+                                    <SwipeItems>
+                                        <SwipeItem
+                                            Command="{Binding Source={x:Reference colview}, Path=BindingContext.DeleteCommand}"
+                                            CommandParameter="{Binding .}"
+                                            IconImageSource="trash.png"
+                                            Text="מחק" />
+                                        <SwipeItem IconImageSource="favorite.png" Text="מועדפים" />
+                                    </SwipeItems>
+                                </SwipeView.LeftItems>
                                 <Grid ColumnDefinitions="2*,*,*" ColumnSpacing="2">
                                     <Frame
                                         Margin="5"
@@ -111,11 +134,20 @@
                                         </Label>
                                     </StackLayout>
                                 </Grid>
-                            </Frame>
+                            </SwipeView>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>
-            </Grid>
-        </Frame>
+            </RefreshView>
+            <Picker
+                Title="בחר חודש"
+                ItemsSource="{Binding Months}"
+                SelectedIndex="{Binding SelectedIndex}"
+                SelectedItem="{Binding SelectedMonth}" />
+            <HorizontalStackLayout HorizontalOptions="Center" Spacing="5">
+                <Button Command="{Binding FilterCommand}" Text="סנן" />
+                <Button Command="{Binding ClearFilterCommand}" Text="נקה סינון" />
+            </HorizontalStackLayout>
+        </StackLayout>
     </ScrollView>
 </ContentPage>
