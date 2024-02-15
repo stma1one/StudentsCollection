@@ -53,7 +53,7 @@
             <!--  refreshView מוסיפה אפשרות לבצע ריענון עם סימון בזמן ביצוע הפעולה. IsRefreshing - מעדכן האם מציג/מסתיר את הסמן של הרענון  -->
             <RefreshView Command="{Binding LoadStudentsCommand}" IsRefreshing="{Binding IsRefreshing}">
                 <!--  collectionView - פקד אוספים. itemsource- מקור הנתונים  -->
-                <CollectionView x:Name="colview" sele ItemsSource="{Binding Students}">
+                <CollectionView x:Name="colview" ItemsSource="{Binding Students}">
                     <!--  עיצוב הפריסה של הפריטים  -->
                     <CollectionView.ItemsLayout>
                         <LinearItemsLayout ItemSpacing="4" Orientation="Vertical" />
@@ -139,9 +139,8 @@
                 </CollectionView>
             </RefreshView>
             <Picker
-                Title="בחר חודש" 
+                Title="בחר חודש"
                 ItemsSource="{Binding Months}"
-                
                 SelectedIndex="{Binding SelectedIndex}"
                 SelectedItem="{Binding SelectedMonth}" />
             <HorizontalStackLayout HorizontalOptions="Center" Spacing="5">
