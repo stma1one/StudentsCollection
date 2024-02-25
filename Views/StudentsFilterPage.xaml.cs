@@ -7,6 +7,6 @@ public partial class StudentsFilterPage : ContentPage
 	public StudentsFilterPage()
 	{
 		InitializeComponent();
-		this.BindingContext = new StudentsBasicPageViewModel();
+		this.BindingContext = new StudentsFilterPageViewModel();
 	}
 }

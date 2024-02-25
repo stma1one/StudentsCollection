@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="StudentsCollection.Views.MenuPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:vm="clr-namespace:StudentsCollection.ViewModels"
+    Title="תפריט"
+    x:DataType="vm:MenuPageViewModel">
+    <VerticalStackLayout
+        Margin="15"
+        Spacing="25"
+        VerticalOptions="CenterAndExpand">
+        <Button
+            Command="{Binding GotToPage}"
+            CommandParameter="BasicStudent"
+            Text="מסך תלמידים בסיסי" />
+        <Button
+            Command="{Binding GotToPage}"
+            CommandParameter="StudentRefresh"
+            Text="מסך תלמידים עם רענון" />
+        <Button
+            Command="{Binding GotToPage}"
+            CommandParameter="StudentContext"
+            Text="מסך תלמידים עם תפריט" />
+        <Button
+            Command="{Binding GotToPage}"
+            CommandParameter="StudentFilter"
+            Text="מסך תלמידים סינון" />
+        <Button
+            Command="{Binding GotToPage}"
+            CommandParameter="StudentSelection"
+            Text="מסך תלמידים עם בחירה" />
+
+
+    </VerticalStackLayout>
+</ContentPage>

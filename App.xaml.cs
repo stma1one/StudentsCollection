@@ -1,4 +1,5 @@
-﻿using StudentsCollection.Views;
+﻿using StudentsCollection.ViewModels;
+using StudentsCollection.Views;
 
 namespace StudentsCollection
 {
@@ -8,7 +9,7 @@ namespace StudentsCollection
         {
             InitializeComponent();
 
-            MainPage = new StudentsWithRefreshPage();
+            MainPage = new AppShell();
         }
     }
 }

@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
-    x:Class="StudentsCollection.Views.StudentsWithRefreshPage"
+    x:Class="StudentsCollection.Views.StudentsWithSelectionPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:models="clr-namespace:StudentsCollection.Models"
     xmlns:vm="clr-namespace:StudentsCollection.ViewModels"
-    Title="מסך הכולל ריענון"
-    x:DataType="vm:StudentsWithRefreshPageViewModel">
-
+    Title="מסך סימון בחירה"
+    x:DataType="vm:StudentsWithSelectionPageViewModel">
     <!--  scroll view enables Scroll when the obejcts on screen has more entries than the screen  -->
     <ScrollView Margin="10">
         <StackLayout>
@@ -34,26 +33,23 @@
                 </HorizontalStackLayout>
                 <!--  הכנסת שם תלמיד לאוסף  -->
                 <HorizontalStackLayout Grid.Row="1">
-                    <Label Text="הוסף שם תלמיד" VerticalOptions="Center" />
-                    <Entry
-                        Placeholder="הכנס שם"
-                        Text="{Binding StudentName}"
-                        ToolTipProperties.Text="shalgi or tami or itamar or shai or shahar"
-                        VerticalOptions="Center"
-                        VerticalTextAlignment="Center"
-                        WidthRequest="100" />
+
                     <Button
-                        Command="{Binding AddStudentCommand}"
+                        Command="{Binding ShowStudentCommand}"
                         FontAttributes="Bold"
                         HeightRequest="50"
-                        Text="הכנס תלמיד" />
+                        Text="הצג תלמיד" />
                 </HorizontalStackLayout>
             </Grid>
 
             <!--  refreshView מוסיפה אפשרות לבצע ריענון עם סימון בזמן ביצוע הפעולה. IsRefreshing - מעדכן האם מציג/מסתיר את הסמן של הרענון  -->
             <RefreshView Command="{Binding LoadStudentsCommand}" IsRefreshing="{Binding IsRefreshing}">
                 <!--  collectionView - פקד אוספים. itemsource- מקור הנתונים  -->
-                <CollectionView x:Name="colview" ItemsSource="{Binding Students}">
+                <CollectionView
+                    x:Name="colview"
+                    ItemsSource="{Binding Students}"
+                    SelectedItem="{Binding SelectedStudent}"
+                    SelectionMode="Single">
                     <!--  עיצוב הפריסה של הפריטים  -->
                     <CollectionView.ItemsLayout>
                         <LinearItemsLayout ItemSpacing="4" Orientation="Vertical" />

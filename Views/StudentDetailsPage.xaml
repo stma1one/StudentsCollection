@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="StudentsCollection.Views.StudentDetailsPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:vm="clr-namespace:StudentsCollection.ViewModels"
+    Title="{Binding Title}"
+    x:DataType="vm:StudentDetailsPageViewModel">
+    <Grid ColumnDefinitions="2*,*,*" ColumnSpacing="2">
+        <Frame
+            Margin="5"
+            CornerRadius="40"
+            HeightRequest="80"
+            WidthRequest="80">
+            <Image
+                Aspect="AspectFit"
+                HeightRequest="80"
+                Source="{Binding Student.Image}"
+                WidthRequest="80" />
+        </Frame>
+        <StackLayout
+            Grid.Column="1"
+            Grid.ColumnSpan="2"
+            VerticalOptions="CenterAndExpand">
+            <Label>
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span FontAttributes="Bold" Text="Name:" />
+                        <Span Text="{Binding Student.FullName}" />
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <Label>
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span FontAttributes="Bold" Text="BirthDay:" />
+                        <!--  }0=>הפרמטר dd=>ימים בהצגה של 2 ספרות  MM=> חודשים ב2 ספרות  yyyy => שנים  -->
+                        <Span Text="{Binding Student.BirthDate, StringFormat='{0:dd/MM/yyyy}'}" />
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <Label>
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span FontAttributes="Bold" Text="Age:" />
+                        <Span Text="{Binding Student.Age, StringFormat='{0:F1}'}" />
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+        </StackLayout>
+    </Grid>
+</ContentPage>

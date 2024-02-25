@@ -5,37 +5,34 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:models="clr-namespace:StudentsCollection.Models"
     xmlns:vm="clr-namespace:StudentsCollection.ViewModels"
-    Title="StudentsBasicPage"
+    Title="מסך תצוגת תלמידים"
     x:DataType="vm:StudentsBasicPageViewModel">
 
+    <!--  scroll view enables Scroll when the obejcts on screen has more entries than the screen  -->
     <ScrollView Margin="10">
-
-        <Frame BorderColor="Transparent">
-            <!--  Grid for buttons, Add Student, Collection of students  -->
+        <StackLayout>
+            <!--  Load And Delete buttons Grid  -->
             <Grid
                 HorizontalOptions="Center"
-                RowDefinitions=".1*,.1*,*"
+                RowDefinitions="*,*"
                 RowSpacing="2">
-                <!--  Load and Delete all Students  -->
                 <HorizontalStackLayout
-                    Margin="0,5,0,0"
+                    Margin="15"
                     HorizontalOptions="Center"
                     Spacing="10">
-                    <!--  Load Students  -->
                     <Button
                         BackgroundColor="Green"
                         Command="{Binding LoadStudentsCommand}"
                         CornerRadius="40"
                         Text="טען תלמידים"
                         WidthRequest="110" />
-                    <!--  Delete All Students  -->
                     <Button
                         Command="{Binding ClearStudentsCommand}"
                         CornerRadius="40"
                         Text="מחק תלמידים"
                         WidthRequest="110" />
                 </HorizontalStackLayout>
-                <!--  Add Student  -->
+                <!--  הכנסת שם תלמיד לאוסף  -->
                 <HorizontalStackLayout Grid.Row="1">
                     <Label Text="הוסף שם תלמיד" VerticalOptions="Center" />
                     <Entry
@@ -45,89 +42,87 @@
                         VerticalOptions="Center"
                         VerticalTextAlignment="Center"
                         WidthRequest="100" />
-
                     <Button
                         Command="{Binding AddStudentCommand}"
                         FontAttributes="Bold"
                         HeightRequest="50"
                         Text="הכנס תלמיד" />
                 </HorizontalStackLayout>
-                <!--  list of students  -->
-                <CollectionView
-                    Grid.Row="2"
-                    ItemsSource="{Binding Students}"
-                    SelectionMode="Single">
-                    <!--  presentation  -->
-                    <CollectionView.ItemsLayout>
-                        <LinearItemsLayout ItemSpacing="4" Orientation="Vertical" />
-                    </CollectionView.ItemsLayout>
-                    <!--  empty view  -->
-                    <CollectionView.EmptyView>
-                        <StackLayout
-                            Margin="10"
-                            BackgroundColor="LightBlue"
-                            HeightRequest="200"
-                            VerticalOptions="Start">
-                            <Image
-                                Aspect="Fill"
-                                HeightRequest="180"
-                                Source="no_students.png"
-                                WidthRequest="180" />
-                        </StackLayout>
-                    </CollectionView.EmptyView>
-                    <!--  define how an item looks like  -->
-                    <CollectionView.ItemTemplate>
-                        <DataTemplate x:DataType="models:Student">
-
-                            <Grid ColumnDefinitions="2*,*,*" ColumnSpacing="2">
-                                <Frame
-                                    Margin="5"
-                                    CornerRadius="40"
-                                    HeightRequest="80"
-                                    WidthRequest="80">
-                                    <Image
-                                        Aspect="AspectFit"
-                                        HeightRequest="80"
-                                        Source="{Binding Image}"
-                                        WidthRequest="80" />
-                                </Frame>
-                                <StackLayout
-                                    Grid.Column="1"
-                                    Grid.ColumnSpan="2"
-                                    VerticalOptions="CenterAndExpand">
-                                    <Label>
-                                        <Label.FormattedText>
-                                            <FormattedString>
-                                                <Span FontAttributes="Bold" Text="Name:" />
-                                                <Span Text="{Binding FullName}" />
-                                            </FormattedString>
-                                        </Label.FormattedText>
-                                    </Label>
-                                    <Label>
-                                        <Label.FormattedText>
-                                            <FormattedString>
-                                                <Span FontAttributes="Bold" Text="BirthDay:" />
-
-                                                <Span Text="{Binding BirthDate, StringFormat='{0:dd/MM/yyyy}'}" />
-
-                                            </FormattedString>
-                                        </Label.FormattedText>
-                                    </Label>
-                                    <Label>
-                                        <Label.FormattedText>
-                                            <FormattedString>
-                                                <Span FontAttributes="Bold" Text="Age:" />
-                                                <Span Text="{Binding Age, StringFormat='{0:F1}'}" />
-                                            </FormattedString>
-                                        </Label.FormattedText>
-                                    </Label>
-                                </StackLayout>
-                            </Grid>
-
-                        </DataTemplate>
-                    </CollectionView.ItemTemplate>
-                </CollectionView>
             </Grid>
-        </Frame>
+            <!--  list of students  -->
+            <!--  collectionView - פקד אוספים. itemsource- מקור הנתונים  -->
+            <CollectionView x:Name="colview" ItemsSource="{Binding Students}">
+                <!--  עיצוב הפריסה של הפריטים  -->
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout ItemSpacing="4" Orientation="Vertical" />
+                </CollectionView.ItemsLayout>
+                <!--  תצוגה כשאין פריטים  -->
+                <CollectionView.EmptyView>
+                    <StackLayout
+                        Margin="10"
+                        BackgroundColor="LightBlue"
+                        HeightRequest="200"
+                        VerticalOptions="Start">
+                        <Image
+                            Aspect="Fill"
+                            HeightRequest="180"
+                            Source="no_students.png"
+                            WidthRequest="180" />
+
+                    </StackLayout>
+                </CollectionView.EmptyView>
+                <!--  עיצוב תצוגה של פריט בודד  -->
+                <CollectionView.ItemTemplate>
+                    <!--  x:DataType מגדיר מאיפה להשלים את הנתונים  -->
+                    <DataTemplate x:DataType="models:Student">
+
+                        <Grid ColumnDefinitions="2*,*,*" ColumnSpacing="2">
+                            <Frame
+                                Margin="5"
+                                CornerRadius="40"
+                                HeightRequest="80"
+                                WidthRequest="80">
+                                <Image
+                                    Aspect="AspectFit"
+                                    HeightRequest="80"
+                                    Source="{Binding Image}"
+                                    WidthRequest="80" />
+                            </Frame>
+                            <StackLayout
+                                Grid.Column="1"
+                                Grid.ColumnSpan="2"
+                                VerticalOptions="CenterAndExpand">
+                                <Label>
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span FontAttributes="Bold" Text="Name:" />
+                                            <Span Text="{Binding FullName}" />
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                                <Label>
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span FontAttributes="Bold" Text="BirthDay:" />
+                                            <!--  }0=>הפרמטר dd=>ימים בהצגה של 2 ספרות  MM=> חודשים ב2 ספרות  yyyy => שנים  -->
+                                            <Span Text="{Binding BirthDate, StringFormat='{0:dd/MM/yyyy}'}" />
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                                <Label>
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span FontAttributes="Bold" Text="Age:" />
+                                            <Span Text="{Binding Age, StringFormat='{0:F1}'}" />
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                            </StackLayout>
+                        </Grid>
+
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
     </ScrollView>
 </ContentPage>
