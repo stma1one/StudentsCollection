@@ -54,8 +54,11 @@
 
 	<ItemGroup>
 	  <None Remove="Resources\Images\favorite.png" />
+	  <None Remove="Resources\Images\home.svg" />
 	  <None Remove="Resources\Images\no_students.png" />
+	  <None Remove="Resources\Images\search.svg" />
 	  <None Remove="Resources\Images\trash.png" />
+	  <None Remove="Resources\Images\usersalt.svg" />
 	</ItemGroup>
 
 	

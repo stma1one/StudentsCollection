@@ -6,8 +6,49 @@
     xmlns:local="clr-namespace:StudentsCollection"
     xmlns:views="clr-namespace:StudentsCollection.Views">
 
-    <ShellContent ContentTemplate="{DataTemplate views:MenuPage}" Route="HomePage" />
+    <ShellContent
+        ContentTemplate="{DataTemplate views:MenuPage}"
+        Icon="home.png"
+        Route="HomePage" />
 
+
+    <!--<TabBar Shell.TabBarUnselectedColor="Grey">
+        <ShellContent
+            ContentTemplate="{DataTemplate views:MenuPage}"
+            Icon="home.png"
+            Route="HomePage" />
+        <Tab Icon="search.png">
+            <ShellContent
+                Title="סינון"
+                ContentTemplate="{DataTemplate views:StudentsFilterPage}"
+                Icon="search.png" />
+            <ShellContent Title="רענון" ContentTemplate="{DataTemplate views:StudentsWithSelectionPage}" />
+        </Tab>
+    </TabBar>-->
+
+    <!--<FlyoutItem
+        Title="תפריט"
+        FlyoutDisplayOptions="AsSingleItem"
+        Icon="home.png">
+        <ShellContent
+            Title="בית"
+            ContentTemplate="{DataTemplate views:MenuPage}"
+            Icon="home.png"
+            Route="HomePage" />
+        <ShellContent
+            Title="סינון"
+            ContentTemplate="{DataTemplate views:StudentsFilterPage}"
+            Icon="search.png" />
+        <ShellContent
+            Title="רענון"
+            ContentTemplate="{DataTemplate views:StudentsWithSelectionPage}"
+            Icon="usersalt.png" />
+
+    </FlyoutItem>
+
+    <FlyoutItem Title="עוד מסך" Icon="trash.png">
+        <ShellContent ContentTemplate="{DataTemplate views:StudentsWithContextMenuPage}" />
+    </FlyoutItem>-->
 
 
 </Shell>
