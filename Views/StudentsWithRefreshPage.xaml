@@ -138,7 +138,7 @@
                     </CollectionView.ItemTemplate>
                 </CollectionView>
             </RefreshView>
-            <Picker
+
                 Title="בחר חודש"
                 ItemsSource="{Binding Months}"
                 SelectedIndex="{Binding SelectedIndex}"
