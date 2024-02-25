@@ -5,6 +5,15 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:StudentsCollection"
     xmlns:views="clr-namespace:StudentsCollection.Views">
+    <!--<Shell.FlyoutHeader>
+        <StackLayout HeightRequest="200">
+            <Image
+                Aspect="AspectFill"
+                HeightRequest="200"
+                Source="header.png" />
+        </StackLayout>
+    </Shell.FlyoutHeader>-->
+
 
     <ShellContent
         ContentTemplate="{DataTemplate views:MenuPage}"
@@ -49,6 +58,6 @@
     <FlyoutItem Title="עוד מסך" Icon="trash.png">
         <ShellContent ContentTemplate="{DataTemplate views:StudentsWithContextMenuPage}" />
     </FlyoutItem>-->
-
+    <MenuItem Text="help" />
 
 </Shell>
