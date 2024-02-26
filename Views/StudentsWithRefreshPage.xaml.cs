@@ -4,9 +4,9 @@ namespace StudentsCollection.Views;
 
 public partial class StudentsWithRefreshPage : ContentPage
 {
-	public StudentsWithRefreshPage()
+	public StudentsWithRefreshPage(StudentsWithRefreshPageViewModel vm)
 	{
 		InitializeComponent();
-		this.BindingContext = new StudentsWithRefreshPageViewModel();
+		this.BindingContext = vm;
 	}
 }

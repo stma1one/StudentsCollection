@@ -4,9 +4,9 @@ namespace StudentsCollection.Views;
 
 public partial class StudentsWithContextMenuPage : ContentPage
 {
-	public StudentsWithContextMenuPage()
+	public StudentsWithContextMenuPage(StudentsWithContextMenuPageViewModel vm)
 	{
 		InitializeComponent();
-		this.BindingContext = new StudentsWithContextMenuPageViewModel();
+		this.BindingContext = vm;
 	}
 }

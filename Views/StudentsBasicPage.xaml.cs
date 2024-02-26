@@ -4,9 +4,9 @@ namespace StudentsCollection.Views;
 
 public partial class StudentsBasicPage : ContentPage
 {
-	public StudentsBasicPage()
+	public StudentsBasicPage( StudentsBasicPageViewModel vm)
 	{
 		InitializeComponent();
-		this.BindingContext = new StudentsBasicPageViewModel();
+		this.BindingContext = vm;
 	}
 }

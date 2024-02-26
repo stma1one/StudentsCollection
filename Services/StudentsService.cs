@@ -70,11 +70,16 @@ public class StudentsService
         {
              await Task.Delay(1000);
             return students;
-        }
+            }
     public async Task AddStudent(Student student)
     {
         await Task.Delay(2000);
         students.Add(student);
+    }
+    public async Task RemoveStudent(Student student)
+    {
+        await Task.Delay(2000);
+        students.Remove(students.Where(x=>x.FullName==student.FullName).FirstOrDefault());   
     }
 
     }

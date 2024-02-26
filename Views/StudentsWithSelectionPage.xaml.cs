@@ -4,9 +4,9 @@ namespace StudentsCollection.Views;
 
 public partial class StudentsWithSelectionPage : ContentPage
 {
-	public StudentsWithSelectionPage()
+	public StudentsWithSelectionPage(StudentsWithSelectionPageViewModel vm)
 	{
 		InitializeComponent();
-		this.BindingContext = new StudentsWithSelectionPageViewModel();
+		this.BindingContext = vm;
 	}
 }

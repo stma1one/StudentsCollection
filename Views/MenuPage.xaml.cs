@@ -4,9 +4,9 @@ namespace StudentsCollection.Views;
 
 public partial class MenuPage : ContentPage
 {
-	public MenuPage()
+	public MenuPage(MenuPageViewModel vm)
 	{
 		InitializeComponent();
-		this.BindingContext = new MenuPageViewModel();
+		this.BindingContext = vm;
 	}
 }

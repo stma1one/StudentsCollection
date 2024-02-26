@@ -567,22 +567,23 @@ namespace Animals.Services
 
         public IList<Animal> FindMonkeyByLocation(string location)
         {
-            
-            return Monkeys.FindAll(x => x.Location == location);   
+
+            return Monkeys.FindAll(x => x.Location == location);
         }
 
-        public async Task AddMonkey(Animals monkey)
+        public async Task AddMonkey(Animal monkey)
         {
             await Task.Delay(2000);
             Monkeys.Add(monkey);
         }
-        public async Task DeleteMonkey(Animals monkey)
+        public async Task DeleteMonkey(Animal monkey)
         {
             await Task.Delay(2000);
-            Monkeys.Remove(monkey); 
+            Monkeys.Remove(monkey);
         }
 
 
 
     }
+}
 

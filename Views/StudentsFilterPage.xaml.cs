@@ -4,9 +4,9 @@ namespace StudentsCollection.Views;
 
 public partial class StudentsFilterPage : ContentPage
 {
-	public StudentsFilterPage()
+	public StudentsFilterPage(StudentsFilterPageViewModel vm)
 	{
 		InitializeComponent();
-		this.BindingContext = new StudentsFilterPageViewModel();
+		this.BindingContext = vm;
 	}
 }

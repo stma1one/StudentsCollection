@@ -12,6 +12,7 @@ namespace StudentsCollection.ViewModels
 {
     public class StudentsFilterPageViewModel : ViewModelBase
     {
+        private StudentsService service;
         #region סינון חודשים
         public ObservableCollection<int> Months { get; set; }   //רשימת החודשים לסינון
         public object SelectedMonth { get; set; }//חודש נבחר
@@ -33,8 +34,9 @@ namespace StudentsCollection.ViewModels
         #endregion
 
         
-        public StudentsFilterPageViewModel()
+        public StudentsFilterPageViewModel(StudentsService s) 
         {
+            this.service = s;
             fullList = new List<Student>();
             Students = new ObservableCollection<Student>();//רשימה ריקה
             Months = new ObservableCollection<int>();//רשימת החודשים שתוצג במסך
@@ -70,7 +72,7 @@ namespace StudentsCollection.ViewModels
         private async Task LoadStudents()
         {
           
-            StudentsService service = new StudentsService();//ניצור אובייקט חדש של השרות תלמידים
+            
             fullList = await service.GetStudents();//נביא את אוסף התלמידים
             //נעדכן את אוסף התלמידים המוצג במסך מהרשימה המלאה
             Students.Clear();

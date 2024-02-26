@@ -12,7 +12,9 @@ namespace StudentsCollection.ViewModels
 {
     public class StudentsBasicPageViewModel : ViewModelBase
     {
-        
+        private StudentsService service;
+
+
         private string studentName;
         public string StudentName { get => studentName; set { studentName = value; ((Command)AddStudentCommand).ChangeCanExecute(); } }
         public ObservableCollection<Student> Students { get; set; }
@@ -20,8 +22,9 @@ namespace StudentsCollection.ViewModels
         public ICommand ClearStudentsCommand { get; private set; }  
         public ICommand LoadStudentsCommand { get; private set; }//טעינה
         public ICommand AddStudentCommand { get;private set; }  
-        public StudentsBasicPageViewModel()
+        public StudentsBasicPageViewModel(StudentsService s)
         {
+            service = s; 
             Students = new ObservableCollection<Student>();
             
             
@@ -40,7 +43,7 @@ namespace StudentsCollection.ViewModels
 
         private async Task LoadStudents()
         {
-            StudentsService service=new StudentsService();
+            
             var list = await service.GetStudents();
             Students.Clear();
             foreach(var student in list)

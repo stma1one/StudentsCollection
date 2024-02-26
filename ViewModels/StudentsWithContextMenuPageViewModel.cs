@@ -12,6 +12,7 @@ namespace StudentsCollection.ViewModels
 {
     public class StudentsWithContextMenuPageViewModel : ViewModelBase
     {
+        StudentsService service;
         #region סינון חודשים
         public ObservableCollection<int> Months { get; set; }   //רשימת החודשים לסינון
         public object SelectedMonth { get; set; }//חודש נבחר
@@ -38,14 +39,15 @@ namespace StudentsCollection.ViewModels
 
         public bool IsRefreshing { get => isRefreshing; set { isRefreshing = value; OnPropertyChanged(); } }
         #endregion
-        public StudentsWithContextMenuPageViewModel()
+        public StudentsWithContextMenuPageViewModel(StudentsService service)
         {
+            this.service = service;
             fullList = new List<Student>();
             Students = new ObservableCollection<Student>();//רשימה ריקה
             Months = new ObservableCollection<int>();//רשימת החודשים שתוצג במסך
 
 
-            DeleteCommand = new Command((object obj) => { Student st = (Student)obj; Students.Remove(st); fullList.Remove(st); UpdateMonths(); });//מחיקת התלמיד מהרשימה
+            DeleteCommand = new Command(async (object obj) => { Student st = (Student)obj; Students.Remove(st); fullList.Remove(st); await service.RemoveStudent(st); UpdateMonths(); });//מחיקת התלמיד מהרשימה
             LoadStudentsCommand = new Command(async () => await LoadStudents());//טעינת התלמידים
             ClearStudentsCommand = new Command(ClearStudents, () => Students.Count > 0);//ריקון הרשימה
             AddStudentCommand = new Command(() =>
@@ -76,6 +78,7 @@ namespace StudentsCollection.ViewModels
 
             //ניקוי סינון מבטל את הבחירה בחודר וטוען מחדש את הנתונים המקוריים
             ClearFilterCommand = new Command(async () => {; await LoadStudents(); });
+            this.service = service;
         }
 
         //טעינת התלמידים

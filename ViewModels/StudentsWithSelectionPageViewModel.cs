@@ -13,7 +13,7 @@ namespace StudentsCollection.ViewModels
     public class StudentsWithSelectionPageViewModel:ViewModelBase
     {
 
-
+        StudentsService service;
         #region טיפול בסטודנטים
         private List<Student> fullList;//רשימת הסטודנטים המלאה
         private Student selectedStudent;
@@ -31,8 +31,9 @@ namespace StudentsCollection.ViewModels
 
         public bool IsRefreshing { get => isRefreshing; set { isRefreshing = value; OnPropertyChanged(); } }
         #endregion
-        public StudentsWithSelectionPageViewModel()
+        public StudentsWithSelectionPageViewModel(StudentsService service)
         {
+            this.service = service;
             fullList = new List<Student>();
             Students = new ObservableCollection<Student>();//רשימה ריקה
 
@@ -61,7 +62,7 @@ namespace StudentsCollection.ViewModels
         private async Task LoadStudents()
         {
             IsRefreshing = true;//נפעיל את אייקון הרענון
-            StudentsService service = new StudentsService();//ניצור אובייקט חדש של השרות תלמידים
+            
             fullList = await service.GetStudents();//נביא את אוסף התלמידים
             //נעדכן את אוסף התלמידים המוצג במסך מהרשימה המלאה
             Students.Clear();

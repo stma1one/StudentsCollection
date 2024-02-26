@@ -12,20 +12,22 @@
                 HeightRequest="200"
                 Source="header.png" />
         </StackLayout>
-    </Shell.FlyoutHeader>-->
+    </Shell.FlyoutHeader>
 
-
-    <ShellContent
-        ContentTemplate="{DataTemplate views:MenuPage}"
-        Icon="home.png"
-        Route="HomePage" />
-
-
-    <!--<TabBar Shell.TabBarUnselectedColor="Grey">
+    <FlyoutItem Title="Home">
         <ShellContent
             ContentTemplate="{DataTemplate views:MenuPage}"
             Icon="home.png"
             Route="HomePage" />
+    </FlyoutItem>-->
+
+    <TabBar Shell.TabBarUnselectedColor="Grey">
+
+        <ShellContent
+            ContentTemplate="{DataTemplate views:MenuPage}"
+            Icon="home.png"
+            Route="HomePage" />
+
         <Tab Icon="search.png">
             <ShellContent
                 Title="סינון"
@@ -33,7 +35,7 @@
                 Icon="search.png" />
             <ShellContent Title="רענון" ContentTemplate="{DataTemplate views:StudentsWithSelectionPage}" />
         </Tab>
-    </TabBar>-->
+    </TabBar>
 
     <!--<FlyoutItem
         Title="תפריט"
@@ -58,6 +60,6 @@
     <FlyoutItem Title="עוד מסך" Icon="trash.png">
         <ShellContent ContentTemplate="{DataTemplate views:StudentsWithContextMenuPage}" />
     </FlyoutItem>-->
-    <MenuItem Text="help" />
+    <!--<MenuItem Text="help" />-->
 
 </Shell>
