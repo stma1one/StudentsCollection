@@ -26,6 +26,7 @@ namespace StudentsCollection.ViewModels
         {
             service = s; 
             Students = new ObservableCollection<Student>();
+            Students.Clear();
             
             
 

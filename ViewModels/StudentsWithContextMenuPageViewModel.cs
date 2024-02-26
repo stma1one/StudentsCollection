@@ -85,12 +85,13 @@ namespace StudentsCollection.ViewModels
         private async Task LoadStudents()
         {
             IsRefreshing = true;//נפעיל את אייקון הרענון
-            StudentsService service = new StudentsService();//ניצור אובייקט חדש של השרות תלמידים
+            
             fullList = await service.GetStudents();//נביא את אוסף התלמידים
             //נעדכן את אוסף התלמידים המוצג במסך מהרשימה המלאה
             Students.Clear();
             foreach (var student in fullList)
                 Students.Add(student);
+            //נעדכן האם ניתן להפעיל את הפעולות
             ((Command)ClearStudentsCommand).ChangeCanExecute();
             ((Command)FilterCommand).ChangeCanExecute();
 

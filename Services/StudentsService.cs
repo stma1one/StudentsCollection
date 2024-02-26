@@ -69,7 +69,7 @@ public class StudentsService
         public async Task<List<Student>> GetStudents()
         {
              await Task.Delay(1000);
-            return students;
+            return students.ToList();
             }
     public async Task AddStudent(Student student)
     {
@@ -79,7 +79,11 @@ public class StudentsService
     public async Task RemoveStudent(Student student)
     {
         await Task.Delay(2000);
-        students.Remove(students.Where(x=>x.FullName==student.FullName).FirstOrDefault());   
+        var st = students.Where(x => x.FullName == student.FullName).FirstOrDefault();
+        if (st != null)
+        {
+            students.Remove(st);
+        }
     }
 
     }

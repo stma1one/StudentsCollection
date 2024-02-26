@@ -21,21 +21,21 @@
             Route="HomePage" />
     </FlyoutItem>-->
 
-    <TabBar Shell.TabBarUnselectedColor="Grey">
+    <!--<TabBar Shell.TabBarUnselectedColor="Grey">-->
 
         <ShellContent
             ContentTemplate="{DataTemplate views:MenuPage}"
             Icon="home.png"
             Route="HomePage" />
 
-        <Tab Icon="search.png">
+        <!--<Tab Icon="search.png">
             <ShellContent
                 Title="סינון"
                 ContentTemplate="{DataTemplate views:StudentsFilterPage}"
                 Icon="search.png" />
             <ShellContent Title="רענון" ContentTemplate="{DataTemplate views:StudentsWithSelectionPage}" />
-        </Tab>
-    </TabBar>
+        </Tab>-->
+    <!--</TabBar>-->
 
     <!--<FlyoutItem
         Title="תפריט"
